@@ -1,9 +1,8 @@
-package com.example.calc_ir_android.ui.Movi
+package com.example.calcirkotlin.ui.Movi
 
 import android.app.AlertDialog
-import android.content.DialogInterface
+import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,15 +10,12 @@ import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.FragmentActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.calc_ir_android.model.ListaMoviModel.Itens
-import com.example.calc_ir_android.model.ListaMoviModel.ListMoviModel
-import com.example.calc_ir_android.ui.Movi.MoviAdapter.MoviViewHolder
 import com.example.calcirkotlin.Model.ListaMoviModel.DelMoviModel
-import com.example.calcirkotlin.Model.LoginModel.DeleteMoviModel
+import com.example.calcirkotlin.Model.ListaMoviModel.DeleteMoviModel
+import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddModel
 import com.example.calcirkotlin.Model.LoginModel.TokenGetModel
 import com.example.calcirkotlin.R
 import com.example.calcirkotlin.RestAPI.RetrofitInitializer
@@ -31,8 +27,9 @@ import retrofit2.Response
 class MoviAdapter internal constructor(
     private val listaMovi: MutableList<Itens?>?,
     private var activity: FragmentActivity?
+
 ) :
-    RecyclerView.Adapter<MoviViewHolder?>() {
+    RecyclerView.Adapter<MoviAdapter.MoviViewHolder?>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.movi_celula, parent, false)
         return MoviViewHolder(v)
@@ -74,6 +71,7 @@ class MoviAdapter internal constructor(
         }
 
         override fun onClick(v: View) {
+            val REQUEST_ALTER = 2
             val c = listaMovi?.get(getAdapterPosition())
             val builder: AlertDialog.Builder = AlertDialog.Builder(activity)
             builder.setTitle(c?.getAcoes())
@@ -87,16 +85,21 @@ class MoviAdapter internal constructor(
                             "0" + getAdapterPosition(),
                             Toast.LENGTH_SHORT
                         ).show()
+                        v.getContext().startActivity(Intent(v.getContext(),MoviAddActivity::class.java))
                     }
                     1 -> {
 
-                        exluirAPI(c?.getUserId()!!.toInt(), c?.getAcoesId()!!.toInt())
+                        exluirAPI(
+                            c?.getUserId()!!.toInt(),
+                            c?.getAcoesId()!!.toInt(),
+                            getAdapterPosition()
+                        )
                         Toast.makeText(
                             activity?.getApplicationContext(),
                             "Excluir " + getAdapterPosition(),
                             Toast.LENGTH_SHORT
                         ).show()
-                        recarrega(activity, v )
+
                     }
                 }
             }
@@ -104,9 +107,10 @@ class MoviAdapter internal constructor(
         }
     }
 
-    fun exluirAPI(use: Int, acoes: Int) {
+    fun exluirAPI(use: Int, acoes: Int, position: Int) {
         val retrofitClient = RetrofitInitializer.getRetrofitInstance()
-        val deleteMoviModel = DeleteMoviModel(use, acoes)
+        val deleteMoviModel =
+            DeleteMoviModel(use, acoes)
         val endpoint = retrofitClient.create(Service.ExcluirAcoesService::class.java)
         val call = endpoint.excluimovi(
             TokenGetModel.getAccess_token(),
@@ -124,6 +128,8 @@ class MoviAdapter internal constructor(
                             "Item Excluído",
                             Toast.LENGTH_SHORT
                         ).show()
+                        listaMovi?.removeAt(position)
+                        notifyDataSetChanged()
                     } else {
                         Toast.makeText(
                             activity?.getApplicationContext(),
@@ -143,60 +149,4 @@ class MoviAdapter internal constructor(
             }
         })
     }
-}
-
-fun recarrega(activity: FragmentActivity?, root: View) {
-    lateinit var moviRecy: RecyclerView
-    var adapter: MoviAdapter? = null
-
-
-    moviRecy = root.findViewById(R.id.moviRecy)
-    moviRecy.setHasFixedSize(true)
-    val llm = LinearLayoutManager(activity)
-    llm.orientation = LinearLayoutManager.VERTICAL
-    moviRecy.setLayoutManager(llm)
-
-
-    val retrofitClient = RetrofitInitializer.getRetrofitInstance()
-    val endpoint = retrofitClient.create(Service.ListaAcoesService::class.java)
-    val call = endpoint.listamovi(TokenGetModel.getAccess_token(), "application/json")
-
-
-    call?.enqueue(object : Callback<ListMoviModel?> {
-        override fun onResponse(
-            call: Call<ListMoviModel?>?,
-            response: Response<ListMoviModel?>?
-        ) {
-            if (response != null) {
-                if (response.isSuccessful()) { //verifica aqui se o corpo da resposta não é nulo
-                    adapter = MoviAdapter(response.body()?.getItems(), activity)
-                    moviRecy.setAdapter(adapter)
-                    var items = response.body()?.getItems()
-
-                } else {
-                    Toast.makeText(
-                        activity?.getApplicationContext(),
-                        "Resposta não foi sucesso",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    // segura os erros de requisição
-                    val errorBody = response.errorBody()
-                }
-            } else {
-                Toast.makeText(
-                    activity?.getApplicationContext(),
-                    "Resposta nula do servidor",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-
-        override fun onFailure(call: Call<ListMoviModel?>, t: Throwable) {
-            Toast.makeText(
-                activity?.getApplicationContext(),
-                "Erro na chamada ao servidor",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    })
 }

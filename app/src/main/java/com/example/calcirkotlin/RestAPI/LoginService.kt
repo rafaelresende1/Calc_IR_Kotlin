@@ -2,7 +2,7 @@ package com.example.calcirkotlin.RestAPI
 
 import com.example.calc_ir_android.model.ListaMoviModel.ListMoviModel
 import com.example.calcirkotlin.Model.ListaMoviModel.DelMoviModel
-import com.example.calcirkotlin.Model.LoginModel.DeleteMoviModel
+import com.example.calcirkotlin.Model.ListaMoviModel.DeleteMoviModel
 import com.example.calcirkotlin.Model.LoginModel.LoginModel
 import com.example.calcirkotlin.Model.LoginModel.TokenModel
 import retrofit2.Call

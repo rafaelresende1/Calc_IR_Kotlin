@@ -4,6 +4,8 @@ object TokenGetModel {
     private var access_token: String? = null
     private var refresh_token: String? = null
     private var user_id: Int = 0
+
+
     fun getAccess_token(): String? {
         return "Bearer $access_token"
     }

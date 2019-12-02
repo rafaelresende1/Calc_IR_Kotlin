@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
     var editText_user: TextInputLayout? = null
     var editText_senha: TextInputLayout? = null
     var button_logar: Button? = null
-    var resposta: TokenModel? = TokenModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

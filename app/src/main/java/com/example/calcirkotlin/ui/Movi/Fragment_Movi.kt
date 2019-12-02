@@ -6,16 +6,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.calc_ir_android.model.ListaMoviModel.ListMoviModel
+import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddModel
 import com.example.calcirkotlin.Model.LoginModel.TokenGetModel
 import com.example.calcirkotlin.R
 import com.example.calcirkotlin.RestAPI.RetrofitInitializer
 import com.example.calcirkotlin.RestAPI.Service
+import com.example.calcirkotlin.ui.Movi.MoviAdapter
+import com.example.calcirkotlin.ui.Movi.MoviAddActivity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,7 +29,6 @@ class Fragment_Movi : Fragment() {
     private lateinit var moviViewModel: ViewModelMovi
     private val REQUEST_NEW = 1
     private val REQUEST_ALTER = 2
-    lateinit var root: View
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?, savedInstanceState: Bundle?
@@ -35,27 +38,17 @@ class Fragment_Movi : Fragment() {
 
         val fab: FloatingActionButton = root.findViewById(R.id.fab)
         getList(root, activity)
+
+
         fab.setOnClickListener {
             val i = Intent(activity, MoviAddActivity::class.java)
+            var moviAddModel: MoviAddModel? = MoviAddModel()
+            i.putExtra("acao", moviAddModel)
             startActivityForResult(i, REQUEST_NEW)
         }
         return root
     }
-
 }
-
-fun recarregar() {
-// Reload current fragment
-    val f: Fragment? = Fragment().getFragmentManager()?.findFragmentById(R.id.fragment_Movi)
-    var fragTransaction = f?.getFragmentManager()?.beginTransaction()
-
-    fragTransaction?.detach(f!!)
-    fragTransaction?.attach(f!!)
-    fragTransaction?.commit()
-}
-
-
-
 fun getList(root: View, activity: FragmentActivity?) {
     lateinit var moviRecy: RecyclerView
     var adapter: MoviAdapter? = null
@@ -111,4 +104,3 @@ fun getList(root: View, activity: FragmentActivity?) {
         }
     })
 }
-
