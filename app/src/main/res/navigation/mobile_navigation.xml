@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/navigation_movi"
-        android:name="com.example.calc_ir_android.ui.Movi.Fragment_Movi"
+        android:name="com.example.calcirkotlin.ui.Movi.Fragment_Movi"
         android:label="Movimentação"
         tools:layout="@layout/fragment_movi" />
 </navigation>

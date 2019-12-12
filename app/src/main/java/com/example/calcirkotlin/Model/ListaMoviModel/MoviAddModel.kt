@@ -3,6 +3,13 @@ package com.example.calcirkotlin.Model.ListaMoviModel
 import android.os.Parcel
 import android.os.Parcelable
 
+class MoviAddServiceModel(private val user_id: Int,
+                          private val acoes_id: Int?,
+                          private val acoes: String,
+                          private val Double: Double,
+                          private val compra_venda: String,
+                          private val data_op: String,
+                          private val quantidade: Int)
 
 class MoviAddModel() : Parcelable {
 
@@ -47,4 +54,5 @@ class MoviAddModel() : Parcelable {
             return arrayOfNulls(size)
         }
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.calc_ir_android.model.ListaMoviModel
+package com.example.calcirkotlin.model.ListaMoviModel
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

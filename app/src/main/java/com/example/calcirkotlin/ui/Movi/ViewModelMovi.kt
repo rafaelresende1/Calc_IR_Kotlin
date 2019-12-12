@@ -1,4 +1,4 @@
-package com.example.calc_ir_android.ui.Movi
+package com.example.calcirkotlin.ui.Movi
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

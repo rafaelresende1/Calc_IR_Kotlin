@@ -9,17 +9,15 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.calc_ir_android.model.ListaMoviModel.Itens
 import com.example.calcirkotlin.Model.ListaMoviModel.DelMoviModel
 import com.example.calcirkotlin.Model.ListaMoviModel.DeleteMoviModel
-import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddModel
 import com.example.calcirkotlin.Model.LoginModel.TokenGetModel
 import com.example.calcirkotlin.R
 import com.example.calcirkotlin.RestAPI.RetrofitInitializer
 import com.example.calcirkotlin.RestAPI.Service
+import com.example.calcirkotlin.model.ListaMoviModel.Itens
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -111,7 +109,7 @@ class MoviAdapter internal constructor(
         val retrofitClient = RetrofitInitializer.getRetrofitInstance()
         val deleteMoviModel =
             DeleteMoviModel(use, acoes)
-        val endpoint = retrofitClient.create(Service.ExcluirAcoesService::class.java)
+        val endpoint = retrofitClient.create(Service.MoviAcoesService::class.java)
         val call = endpoint.excluimovi(
             TokenGetModel.getAccess_token(),
             "application/json",
