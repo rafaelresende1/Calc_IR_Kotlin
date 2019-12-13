@@ -9,11 +9,14 @@ import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.calcirkotlin.Model.ListaMoviModel.DelMoviModel
 import com.example.calcirkotlin.Model.ListaMoviModel.DeleteMoviModel
+import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddServiceModel
 import com.example.calcirkotlin.Model.LoginModel.TokenGetModel
+import com.example.calcirkotlin.Model.LoginModel.TokenParcModel
 import com.example.calcirkotlin.R
 import com.example.calcirkotlin.RestAPI.RetrofitInitializer
 import com.example.calcirkotlin.RestAPI.Service
@@ -78,12 +81,25 @@ class MoviAdapter internal constructor(
             ) { dialogInterface, i ->
                 when (i) {
                     0 -> {
-                        Toast.makeText(
-                            activity?.getApplicationContext(),
-                            "0" + getAdapterPosition(),
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        v.getContext().startActivity(Intent(v.getContext(),MoviAddActivity::class.java))
+                        val tokenParcModel = TokenParcModel(
+                            TokenGetModel.getAccess_token().toString(),
+                            TokenGetModel.getRefresh_token().toString(),
+                            TokenGetModel.getUser_id()
+                        )
+                        val moviAddModel = MoviAddServiceModel(
+                            c?.getUserId()!!.toInt(),
+                            c?.getAcoesId()!!.toInt(),
+                            c.getAcoes().toString(),
+                            c.getValorUnidade()!!.toDouble(),
+                            c.getCompraVenda().toString(),
+                            c.getDataOp().toString(),
+                            c.getQuantidade()!!.toInt()
+                        )
+                        val i = Intent(v.getContext(), MoviAddActivity::class.java)
+                        i.putExtra("acao", moviAddModel)
+                        i.putExtra("token", tokenParcModel)
+                        v.getContext().startActivity(i)
+                        //v.getContext().startActivity(Intent(v.getContext(),MoviAddActivity::class.java))
                     }
                     1 -> {
 
@@ -94,7 +110,7 @@ class MoviAdapter internal constructor(
                         )
                         Toast.makeText(
                             activity?.getApplicationContext(),
-                            "Excluir " + getAdapterPosition(),
+                            "Item excluído!",
                             Toast.LENGTH_SHORT
                         ).show()
 

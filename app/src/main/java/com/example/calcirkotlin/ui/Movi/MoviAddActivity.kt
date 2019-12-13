@@ -1,5 +1,6 @@
 package com.example.calcirkotlin.ui.Movi
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +18,10 @@ import com.google.android.material.textfield.TextInputLayout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.time.Month
+import java.time.Year
+import java.util.*
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
 class MoviAddActivity : AppCompatActivity() {
@@ -26,7 +31,7 @@ class MoviAddActivity : AppCompatActivity() {
     private var text_cv: TextInputLayout? = null
     private var text_quatidade: TextInputLayout? = null
     private var button_movi: Button? = null
-    private lateinit var acao: MoviAddModel
+    private lateinit var acao: MoviAddServiceModel
     private lateinit var token: TokenParcModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,17 +48,38 @@ class MoviAddActivity : AppCompatActivity() {
         acao = intent.getParcelableExtra("acao")
         token = intent.getParcelableExtra("token")
 
-        text_quatidade?.editText?.setText(acao.quantidade.toString())
-        text_acoes?.editText?.setText(acao.acoes.toString())
-        text_valor?.editText?.setText(acao.valor_unidade.toString())
-        text_data?.setText(acao.data_op)
-        text_cv?.editText?.setText(acao.compra_venda)
+        if (acao.acoes_id != 0) {
+            text_quatidade?.editText?.setText(acao.quantidade.toString())
+            text_acoes?.editText?.setText(acao.acoes.toString())
+            text_valor?.editText?.setText(acao.valor_unidade.toString())
+            text_data?.setText(acao.data_op)
+            text_cv?.editText?.setText(acao.compra_venda)
+        }
 
+        ///DatePicker
+        var cal = Calendar.getInstance()
+
+        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            cal.set(Calendar.YEAR, year)
+            cal.set(Calendar.MONTH, monthOfYear)
+            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+
+//            val myFormat = "dd.MM.yyyy" // mention the format you need
+//            val sdf = SimpleDateFormat(myFormat, Locale.US)
+//            text_data?.text = sdf.format()
+        }
+        text_data?.setOnClickListener{
+            DatePickerDialog(this, dateSetListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)).show()
+
+        }
         button_movi?.setOnClickListener {
             Toast.makeText(applicationContext, "Clicado", Toast.LENGTH_SHORT).show()
             val moviAddModel = MoviAddServiceModel(
                 token.user_id,
-                0,
+                acao.acoes_id,
                 text_acoes?.getEditText()?.getText().toString(),
                 text_valor?.getEditText()?.getText().toString().toDouble(),
                 text_cv?.getEditText()?.getText().toString(),

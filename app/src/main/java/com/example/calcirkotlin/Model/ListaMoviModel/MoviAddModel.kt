@@ -5,13 +5,13 @@ import android.os.Parcelable
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
-class MoviAddServiceModel(private val user_id: Int,
-                          private val acoes_id: Int?,
-                          private val acoes: String,
-                          private val valor_unidade: Double,
-                          private val compra_venda: String,
-                          private val data_op: String,
-                          private val quantidade: Int) : Parcelable {
+class MoviAddServiceModel(var user_id: Int,
+                          var acoes_id: Int?,
+                          var acoes: String,
+                          var valor_unidade: Double,
+                          var compra_venda: String,
+                          var data_op: String,
+                          var quantidade: Int) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readValue(Int::class.java.classLoader) as? Int,

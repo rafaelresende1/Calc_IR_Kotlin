@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddModel
+import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddServiceModel
 import com.example.calcirkotlin.Model.LoginModel.TokenGetModel
 import com.example.calcirkotlin.Model.LoginModel.TokenParcModel
 import com.example.calcirkotlin.R
@@ -40,8 +40,8 @@ class Fragment_Movi : Fragment() {
 
         fab.setOnClickListener {
             val i = Intent(activity, MoviAddActivity::class.java)
-            val moviAddModel: MoviAddModel? = MoviAddModel()
-            i.putExtra("acao", moviAddModel)
+            val moviAddServiceModel: MoviAddServiceModel? = MoviAddServiceModel(0,0,"",0.0,"","",0)
+            i.putExtra("acao", moviAddServiceModel)
             val tokenParcModel = TokenParcModel(
                 TokenGetModel.getAccess_token().toString(),
                 TokenGetModel.getRefresh_token().toString(),
