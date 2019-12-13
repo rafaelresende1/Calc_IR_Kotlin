@@ -109,7 +109,7 @@ class MoviAdapter internal constructor(
         val retrofitClient = RetrofitInitializer.getRetrofitInstance()
         val deleteMoviModel =
             DeleteMoviModel(use, acoes)
-        val endpoint = retrofitClient.create(Service.MoviAcoesService::class.java)
+        val endpoint = retrofitClient.create(Service.MoviAcoesDellService::class.java)
         val call = endpoint.excluimovi(
             TokenGetModel.getAccess_token(),
             "application/json",

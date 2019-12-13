@@ -8,8 +8,8 @@ class DeleteMoviModel(private val user_id: Int, private val acoes_id: Int) : Par
     constructor(parcel: Parcel) : this(
         parcel.readInt(),
         parcel.readInt()
-    ) {
-    }
+    )
+
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeInt(user_id)

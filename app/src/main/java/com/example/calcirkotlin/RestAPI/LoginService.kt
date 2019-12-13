@@ -3,6 +3,7 @@ package com.example.calcirkotlin.RestAPI
 import com.example.calcirkotlin.Model.ListaMoviModel.DelMoviModel
 import com.example.calcirkotlin.Model.ListaMoviModel.DeleteMoviModel
 import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddServiceModel
+import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddServiceSerializedModel
 import com.example.calcirkotlin.Model.LoginModel.LoginModel
 import com.example.calcirkotlin.Model.LoginModel.TokenModel
 import com.example.calcirkotlin.model.ListaMoviModel.ListMoviModel
@@ -26,19 +27,20 @@ class Service {
         ): Call<ListMoviModel?>?
     }
 
-    interface MoviAcoesService {
+    interface MoviAcoesDellService {
         @HTTP(method = "DELETE", path = "movimento", hasBody = true)
         fun excluimovi(
             @Header("Authorization") token: String?,
             @Header("Content-Type") content_type: String?,
             @Body deleteMoviModel: DeleteMoviModel
         ): Call<DelMoviModel?>?
-
-        @POST
+    }
+    interface MoviAddService {
+        @PUT("movimento")
         fun addmovi(
             @Header("Authorization") token: String?,
             @Header("Content-Type") content_type: String?,
             @Body moviAddServiceModel: MoviAddServiceModel
-        ): Call<MoviAddServiceModel?>?
+        ): Call<MoviAddServiceSerializedModel?>?
     }
 }

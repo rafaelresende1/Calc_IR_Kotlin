@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/CalcIRKotlin.iml" filepath="$PROJECT_DIR$/CalcIRKotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Calc_IR_Kotlin-CalcIRKotlin.iml" filepath="$PROJECT_DIR$/Calc_IR_Kotlin-CalcIRKotlin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/Calc_IR_Kotlin-app.iml" filepath="$PROJECT_DIR$/app/Calc_IR_Kotlin-app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

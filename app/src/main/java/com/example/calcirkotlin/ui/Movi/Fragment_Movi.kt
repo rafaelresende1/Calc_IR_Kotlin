@@ -42,13 +42,19 @@ class Fragment_Movi : Fragment() {
             val i = Intent(activity, MoviAddActivity::class.java)
             val moviAddModel: MoviAddModel? = MoviAddModel()
             i.putExtra("acao", moviAddModel)
-            val tokenParcModel = TokenParcModel(TokenGetModel.getAccess_token().toString(),TokenGetModel.getRefresh_token().toString() ,TokenGetModel.getRefresh_token().toString().toInt())
+            val tokenParcModel = TokenParcModel(
+                TokenGetModel.getAccess_token().toString(),
+                TokenGetModel.getRefresh_token().toString(),
+                TokenGetModel.getUser_id()
+            )
+            //val tokenParcModel = TokenParcModel("test","teste" ,)
             i.putExtra("token", tokenParcModel)
             startActivityForResult(i, REQUEST_NEW)
         }
         return root
     }
 }
+
 fun getList(root: View, activity: FragmentActivity?) {
     lateinit var moviRecy: RecyclerView
     var adapter: MoviAdapter
