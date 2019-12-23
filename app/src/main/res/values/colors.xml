@@ -8,4 +8,11 @@
     <color name="color1">#FFA500</color>
     <color name="color2">#FF8C00</color>
     <color name="color3">#FF4500</color>
+
+    <!--Primárias-->
+    <color name="divisor">#ffdacc</color>
+    <color name="branco">#ffffff</color>
+    <color name="azul_caneta">#0000cc</color>
+    <color name="vermelho">#cc0000</color>
+
 </resources>

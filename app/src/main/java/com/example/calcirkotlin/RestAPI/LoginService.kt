@@ -6,7 +6,7 @@ import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddServiceModel
 import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddServiceSerializedModel
 import com.example.calcirkotlin.Model.LoginModel.LoginModel
 import com.example.calcirkotlin.Model.LoginModel.TokenModel
-import com.example.calcirkotlin.model.ListaMoviModel.ListMoviModel
+import com.example.calcirkotlin.Model.ListaMoviModel.ListMoviModel
 import retrofit2.Call
 import retrofit2.http.*
 

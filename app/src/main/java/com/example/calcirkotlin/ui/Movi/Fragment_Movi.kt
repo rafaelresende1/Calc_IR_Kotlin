@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.ViewModelProviders
@@ -14,14 +15,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddServiceModel
 import com.example.calcirkotlin.Model.LoginModel.TokenGetModel
 import com.example.calcirkotlin.Model.LoginModel.TokenParcModel
-import com.example.calcirkotlin.R
 import com.example.calcirkotlin.RestAPI.RetrofitInitializer
 import com.example.calcirkotlin.RestAPI.Service
-import com.example.calcirkotlin.model.ListaMoviModel.ListMoviModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.example.calcirkotlin.R
+import com.example.calcirkotlin.Model.ListaMoviModel.ListMoviModel
+
 
 class Fragment_Movi : Fragment() {
     private lateinit var moviViewModel: ViewModelMovi
@@ -47,7 +50,6 @@ class Fragment_Movi : Fragment() {
                 TokenGetModel.getRefresh_token().toString(),
                 TokenGetModel.getUser_id()
             )
-            //val tokenParcModel = TokenParcModel("test","teste" ,)
             i.putExtra("token", tokenParcModel)
             startActivityForResult(i, REQUEST_NEW)
         }
@@ -61,10 +63,15 @@ fun getList(root: View, activity: FragmentActivity?) {
 
 
     moviRecy = root.findViewById(R.id.moviRecy)
-    moviRecy.setHasFixedSize(true)
-    val llm = LinearLayoutManager(activity)
-    llm.orientation = LinearLayoutManager.VERTICAL
-    moviRecy.setLayoutManager(llm)
+    val linerLayout = LinearLayoutManager(activity)
+
+//    var divider = DividerItemDecoration(
+//        activity,
+//        LinearLayoutManager.VERTICAL
+//    )
+//    divider.setDrawable(ContextCompat.getDrawable(activity!!, R.drawable.recycleview_divider)!!)
+//    moviRecy.addItemDecoration(divider)
+    moviRecy.setLayoutManager(linerLayout)
 
 
     val retrofitClient = RetrofitInitializer.getRetrofitInstance()

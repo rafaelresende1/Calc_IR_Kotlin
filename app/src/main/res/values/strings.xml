@@ -17,6 +17,8 @@
     <string name="add_text_cv">Compra ou Venda</string>
     <string name="add_quantidade">Quantidade</string>
 
+    <!---RecycleMovi-->
+    <string name="listaacoes">Lista de Ações</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

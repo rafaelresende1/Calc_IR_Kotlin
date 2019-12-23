@@ -1,15 +1,14 @@
 package com.example.calcirkotlin.ui.Movi
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.Intent
+import android.graphics.Color.*
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.calcirkotlin.Model.ListaMoviModel.DelMoviModel
@@ -20,7 +19,7 @@ import com.example.calcirkotlin.Model.LoginModel.TokenParcModel
 import com.example.calcirkotlin.R
 import com.example.calcirkotlin.RestAPI.RetrofitInitializer
 import com.example.calcirkotlin.RestAPI.Service
-import com.example.calcirkotlin.model.ListaMoviModel.Itens
+import com.example.calcirkotlin.Model.ListaMoviModel.Itens
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -28,21 +27,39 @@ import retrofit2.Response
 class MoviAdapter internal constructor(
     private val listaMovi: MutableList<Itens?>?,
     private var activity: FragmentActivity?
-
 ) :
     RecyclerView.Adapter<MoviAdapter.MoviViewHolder?>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MoviViewHolder {
+
         val v = LayoutInflater.from(parent.context).inflate(R.layout.movi_celula, parent, false)
+
         return MoviViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: MoviViewHolder, position: Int) {
         val c = listaMovi?.get(position)
         holder.text_acoes?.setText(c?.getAcoes())
-        holder.text_valor?.setText(c?.getValorUnidade().toString())
-        holder.text_quantidade?.setText(c?.getQuantidade().toString())
-        holder.text_data?.setText(c?.getDataOp())
-        holder.text_cv?.setText(c?.getCompraVenda())
+        holder.text_valor?.setText( " R$ " + c?.getValorUnidade().toString())
+        holder.text_quantidade?.setText("x" + c?.getQuantidade().toString())
+        holder.text_data?.setText("Data: " + c?.getDataOp())
+        if (c?.getCompraVenda().equals("C")) {
+            holder.text_cv?.setText("Compra: ")
+            holder.text_cv?.setTextColor(parseColor("#357376"))
+        } else if (c?.getCompraVenda().equals("V")) {
+            holder.text_cv?.setText("Venda: ")
+            holder.text_cv?.setTextColor(parseColor("#FF8C00"))
+        }
+
+        if(position %2 == 1)
+        {
+            holder.itemView.setBackgroundColor(parseColor("#ffffff"))
+            holder.but_adicionais.setBackgroundColor(parseColor("#ffffff"))
+        }
+        else
+        {
+            holder.itemView.setBackgroundColor(parseColor("#f9f9f9"))
+            holder.but_adicionais.setBackgroundColor(parseColor("#f9f9f9"))
+        }
 
     }
 
@@ -56,7 +73,7 @@ class MoviAdapter internal constructor(
         var text_quantidade: TextView?
         var text_data: TextView?
         var text_cv: TextView?
-        protected var but_adicionais: ImageButton
+        var but_adicionais: ImageButton
 
 
         init {
