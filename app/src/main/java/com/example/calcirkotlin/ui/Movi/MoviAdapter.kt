@@ -39,7 +39,7 @@ class MoviAdapter internal constructor(
     override fun onBindViewHolder(holder: MoviViewHolder, position: Int) {
         val c = listaMovi?.get(position)
         holder.text_acoes?.setText(c?.getAcoes())
-        holder.text_valor?.setText( " R$ " + c?.getValorUnidade().toString())
+        holder.text_valor?.setText( " R$ " + (c?.getValorUnidade()?.toBigDecimal()))
         holder.text_quantidade?.setText("x" + c?.getQuantidade().toString())
         holder.text_data?.setText("Data: " + c?.getDataOp())
         if (c?.getCompraVenda().equals("C")) {
