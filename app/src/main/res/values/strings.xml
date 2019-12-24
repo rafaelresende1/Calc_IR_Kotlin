@@ -20,6 +20,12 @@
     <!---RecycleMovi-->
     <string name="listaacoes">Lista de Ações</string>
 
+    <!--RecycleMedia-->
+    <string name="acoes">Acões</string>
+    <string name="compra">Compra</string>
+    <string name="venda">Venda</string>
+    <string name="resultado">Resultado</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

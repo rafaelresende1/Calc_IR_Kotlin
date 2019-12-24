@@ -1,4 +1,5 @@
-package com.example.calc_ir_android.ui.Media
+package com.example.calcirkotlin.ui.Media
+
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

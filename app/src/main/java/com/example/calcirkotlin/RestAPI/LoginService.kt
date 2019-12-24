@@ -43,4 +43,11 @@ class Service {
             @Body moviAddServiceModel: MoviAddServiceModel
         ): Call<MoviAddServiceSerializedModel?>?
     }
+    interface ListaMedia {
+        @GET("media")
+        fun listamovi(
+            @Header("Authorization") token: String?,
+            @Header("Content-Type") content_type: String?
+        ): Call<ListMoviModel?>?
+    }
 }

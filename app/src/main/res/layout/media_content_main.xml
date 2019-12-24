@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/fragment_media"
+    tools:context=".ui.Media.Fragment_Media"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/textView"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/acoes"
+            android:textStyle="bold"
+            />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/textView2"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/compra" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/TextView3"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/venda"
+            />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/textView5"
+            android:layout_width="25dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="@string/resultado"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/moviRecyMedia"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/media_celula">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

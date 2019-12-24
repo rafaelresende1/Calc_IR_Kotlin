@@ -1,4 +1,4 @@
-package com.example.calc_ir_android.ui.Media
+package com.example.calcirkotlin.ui.Media
 
 import android.os.Bundle
 import android.view.LayoutInflater
