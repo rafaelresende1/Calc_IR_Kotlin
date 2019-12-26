@@ -2,6 +2,7 @@ package com.example.calcirkotlin.ui.Media
 
 
 import android.app.AlertDialog
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +45,17 @@ class MediaAdapter(
         holder.txt_result?.setText("R$ " + c?.getLucro().toString())
         holder.txt_quant_compra?.setText("x" + c?.getQuantCompraResult().toString())
         holder.txt_quant_venda?.setText("x" + c?.getQuantVendaResult().toString())
+
+        if(c?.getLucro()!! >= 0)
+        {
+            holder.itemView.setBackgroundColor(Color.parseColor("#e8fbe8"))
+            holder.btt_media.setBackgroundColor(Color.parseColor("#e8fbe8"))
+        }
+        else
+        {
+            holder.itemView.setBackgroundColor(Color.parseColor("#fbfbe8"))
+            holder.btt_media.setBackgroundColor(Color.parseColor("fbfbe8"))
+        }
     }
 
     inner class MediaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), View.OnClickListener {
