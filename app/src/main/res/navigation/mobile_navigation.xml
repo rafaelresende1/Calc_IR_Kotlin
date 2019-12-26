@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/navigation_media"
-        android:name="com.example.calc_ir_android.ui.Media.Fragment_Media"
+        android:name="com.example.calcirkotlin.ui.Media.Fragment_Media"
         android:label="Média das Ações"
         tools:layout="@layout/fragment_media" />
     <fragment

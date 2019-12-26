@@ -7,6 +7,8 @@ class ListaMediaModel {
 
     @SerializedName("items")
     @Expose
-    var items: List<Item>? = null
+    var items: MutableList<Item>? = null
+
+
 
 }

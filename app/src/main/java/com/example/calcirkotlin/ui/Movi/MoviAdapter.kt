@@ -11,7 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.example.calcirkotlin.Model.ListaMoviModel.DelMoviModel
+import com.example.calcirkotlin.Model.ListaMoviModel.DelModel
 import com.example.calcirkotlin.Model.ListaMoviModel.DeleteMoviModel
 import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddServiceModel
 import com.example.calcirkotlin.Model.LoginModel.TokenGetModel
@@ -75,7 +75,6 @@ class MoviAdapter internal constructor(
         var text_cv: TextView?
         var but_adicionais: ImageButton
 
-
         init {
             text_acoes = v?.findViewById<TextView?>(R.id.text_acoes)
             text_valor = v?.findViewById<TextView?>(R.id.text_valor)
@@ -83,13 +82,10 @@ class MoviAdapter internal constructor(
             text_data = v?.findViewById<TextView?>(R.id.text_data)
             text_cv = v?.findViewById<TextView?>(R.id.text_cv)
             but_adicionais = v.findViewById(R.id.but_adicionais) as ImageButton
-
             but_adicionais.setOnClickListener(this)
-
         }
 
         override fun onClick(v: View) {
-            val REQUEST_ALTER = 2
             val c = listaMovi?.get(getAdapterPosition())
             val builder: AlertDialog.Builder = AlertDialog.Builder(activity)
             builder.setTitle(c?.getAcoes())
@@ -148,8 +144,8 @@ class MoviAdapter internal constructor(
             "application/json",
             deleteMoviModel
         )
-        call?.enqueue(object : Callback<DelMoviModel?> {
-            override fun onResponse(call: Call<DelMoviModel?>, response: Response<DelMoviModel?>) {
+        call?.enqueue(object : Callback<DelModel?> {
+            override fun onResponse(call: Call<DelModel?>, response: Response<DelModel?>) {
 
                 val texte = response?.body()
                 if (response != null) {
@@ -171,7 +167,7 @@ class MoviAdapter internal constructor(
                 }
             }
 
-            override fun onFailure(call: Call<DelMoviModel?>, t: Throwable) {
+            override fun onFailure(call: Call<DelModel?>, t: Throwable) {
                 Toast.makeText(
                     activity?.getApplicationContext(),
                     "Erro na chamada ao servidor",

@@ -1,6 +1,8 @@
 package com.example.calcirkotlin.RestAPI
 
-import com.example.calcirkotlin.Model.ListaMoviModel.DelMoviModel
+import com.example.calcirkotlin.Model.ListaMediaModel.DeletaMediaModel
+import com.example.calcirkotlin.Model.ListaMediaModel.ListaMediaModel
+import com.example.calcirkotlin.Model.ListaMoviModel.DelModel
 import com.example.calcirkotlin.Model.ListaMoviModel.DeleteMoviModel
 import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddServiceModel
 import com.example.calcirkotlin.Model.ListaMoviModel.MoviAddServiceSerializedModel
@@ -33,7 +35,7 @@ class Service {
             @Header("Authorization") token: String?,
             @Header("Content-Type") content_type: String?,
             @Body deleteMoviModel: DeleteMoviModel
-        ): Call<DelMoviModel?>?
+        ): Call<DelModel?>?
     }
     interface MoviAddService {
         @PUT("movimento")
@@ -45,9 +47,17 @@ class Service {
     }
     interface ListaMedia {
         @GET("media")
-        fun listamovi(
+        fun listamedia(
             @Header("Authorization") token: String?,
             @Header("Content-Type") content_type: String?
-        ): Call<ListMoviModel?>?
+        ): Call<ListaMediaModel?>?
+    }
+    interface MoviMediaDellService {
+        @HTTP(method = "DELETE", path = "media", hasBody = true)
+        fun excluimedia(
+            @Header("Authorization") token: String?,
+            @Header("Content-Type") content_type: String?,
+            @Body deletaMediaModel: DeletaMediaModel
+        ): Call<DelModel?>?
     }
 }

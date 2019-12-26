@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -12,36 +13,85 @@
 
         <TextView
             android:id="@+id/txt_acao"
-            android:layout_width="25dp"
+            android:layout_width="20dp"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
-            android:text="TextView"
+            android:gravity="center"
+            android:text="bbdc4"
             android:textStyle="bold" />
 
-        <TextView
+        <LinearLayout
+            android:layout_width="50dp"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:id="@+id/txt_valor_compra"
-            android:layout_width="25dp"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_media_venda"
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="RS 1000"
+                    android:textColor="@color/compra" />
+
+                <TextView
+                    android:id="@+id/txt_quant_venda"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="x12345"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_media_compra"
+                    android:layout_width="65dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:inputType="numberDecimal"
+                    android:text="RS 11111"
+                    android:textColor="@color/venda" />
+
+                <TextView
+                    android:id="@+id/txt_quant_compra"
+                    android:layout_width="10dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="x1000"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
+            android:id="@+id/txt_result"
+            android:layout_width="20dp"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:id="@+id/txt_valor_venda"
-            android:layout_width="25dp"
             android:layout_weight="1"
-            android:text="TextView" />
+            android:gravity="center" />
 
-        <TextView
+        <ImageButton
+            android:id="@+id/btt_media"
+            android:layout_width="82dp"
             android:layout_height="match_parent"
-            android:gravity="center"
-            android:id="@+id/txt_resultado"
-            android:layout_width="25dp"
-            android:layout_weight="1"
-            android:text="TextView" />
-
+            android:background="@color/branco"
+            android:contentDescription="@string/listaacoes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_trash" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

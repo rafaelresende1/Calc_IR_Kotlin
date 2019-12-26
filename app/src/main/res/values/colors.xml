@@ -15,4 +15,7 @@
     <color name="azul_caneta">#0000cc</color>
     <color name="vermelho">#cc0000</color>
 
+    <!--Compra Venda-->
+    <color name="compra">#357376</color>
+    <color name="venda">#FF8C00</color>
 </resources>

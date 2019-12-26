@@ -16,43 +16,56 @@
         >
 
         <TextView
-            android:gravity="center"
             android:id="@+id/textView"
-            android:layout_width="25dp"
+            android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/acoes"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
 
-        <TextView
-            android:gravity="center"
-            android:id="@+id/textView2"
-            android:layout_width="25dp"
+        <LinearLayout
+            android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/compra" />
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/compra" />
+
+            <TextView
+                android:id="@+id/TextView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/venda" />
+        </LinearLayout>
 
         <TextView
-            android:gravity="center"
-            android:id="@+id/TextView3"
-            android:layout_width="25dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@string/venda"
-            />
-
-        <TextView
-            android:gravity="center"
             android:id="@+id/textView5"
-            android:layout_width="25dp"
+            android:layout_width="20dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/resultado"/>
+            android:gravity="center"
+            android:text="@string/resultado" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="20dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/excluir" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/moviRecyMedia"
+        android:id="@+id/mediaRecyMedia"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/media_celula">
