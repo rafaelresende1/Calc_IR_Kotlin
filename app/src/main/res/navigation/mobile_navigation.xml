@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_media" />
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.calc_ir_android.ui.Home.Fragment_Home"
+        android:name="com.example.calcirkotlin.ui.Home.Fragment_Home"
         android:label="Home"
         tools:layout="@layout/fragment_home" />
     <fragment

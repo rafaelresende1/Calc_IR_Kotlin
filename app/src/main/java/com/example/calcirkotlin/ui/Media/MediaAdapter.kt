@@ -19,6 +19,7 @@ import com.example.calcirkotlin.Model.LoginModel.TokenGetModel
 import com.example.calcirkotlin.R
 import com.example.calcirkotlin.RestAPI.RetrofitInitializer
 import com.example.calcirkotlin.RestAPI.Service
+import kotlinx.android.synthetic.main.media_celula.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -39,7 +40,8 @@ class MediaAdapter(
 
     override fun onBindViewHolder(holder: MediaViewHolder, position: Int) {
         val c = listaMedia?.get(position)
-        holder.txt_acoes?.setText(c?.getAcoes())
+        holder.itemView.txt_acao.text = c?.getAcoes()
+//      holder.txt_acoes?.setText(c?.getAcoes())
         holder.txt_media_compra?.setText("R$ " + c?.getMediaCompra().toString())
         holder.txt_media_venda?.setText("R$ " + c?.getMediaVenda().toString())
         holder.txt_result?.setText("R$ " + c?.getLucro().toString())
@@ -54,7 +56,7 @@ class MediaAdapter(
         else
         {
             holder.itemView.setBackgroundColor(Color.parseColor("#fbfbe8"))
-            holder.btt_media.setBackgroundColor(Color.parseColor("fbfbe8"))
+            holder.btt_media.setBackgroundColor(Color.parseColor("#fbfbe8"))
         }
     }
 
@@ -69,6 +71,7 @@ class MediaAdapter(
 
         init{
             txt_acoes = itemView?.findViewById<TextView?>(R.id.txt_acao)
+            //itemView.txt_acao.text = "asd"
             txt_media_compra = itemView?.findViewById<TextView?>(R.id.txt_media_compra)
             txt_media_venda = itemView?.findViewById<TextView?>(R.id.txt_media_venda)
             txt_result = itemView?.findViewById<TextView?>(R.id.txt_result)
