@@ -24,7 +24,7 @@ class RetrofitInitializer {
                 OkHttpClient.Builder().addInterceptor(interceptor).build()
 
             var retrofit: Retrofit = Retrofit.Builder()
-                .baseUrl("http://47.74.246.126/")
+                .baseUrl("http://172.110.5.253/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()

@@ -26,6 +26,10 @@ class Itens {
     @Expose
     private var quantidade: Int? = null
 
+    @SerializedName("finalizado")
+    @Expose
+    var finalizado: Boolean? = null
+
     fun getUserId(): Int? {
         return userId
     }

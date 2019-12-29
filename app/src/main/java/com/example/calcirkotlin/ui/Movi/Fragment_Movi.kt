@@ -63,12 +63,6 @@ fun getList(root: View, activity: FragmentActivity?) {
     moviRecy = root.findViewById(R.id.moviRecy)
     val linerLayout = LinearLayoutManager(activity)
 
-//    var divider = DividerItemDecoration(
-//        activity,
-//        LinearLayoutManager.VERTICAL
-//    )
-//    divider.setDrawable(ContextCompat.getDrawable(activity!!, R.drawable.recycleview_divider)!!)
-//    moviRecy.addItemDecoration(divider)
     moviRecy.setLayoutManager(linerLayout)
 
 

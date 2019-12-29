@@ -26,6 +26,7 @@
             android:id="@+id/cardCustodiaRecyMedia"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/home_card_custodia_celula" />
+            tools:listitem="@layout/home_card_custodia_celula">
+        </androidx.recyclerview.widget.RecyclerView>
     </com.google.android.material.card.MaterialCardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
